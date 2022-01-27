@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./style.css";
+import Nav from "./components/Nav.js";
+import TravelCard from "./components/TravelCard.js";
+import data from "./data";
+console.log(data);
 
-function App() {
+export default function App() {
+  const travel = data.map((item) => {
+    return (
+      <TravelCard
+        key={item.id}
+        item={item}
+
+        /*
+        {...item}
+
+        or
+        
+        title={item.title}
+        location={item.location}
+        googleMapsUrl={item.googleMapsUrl}
+        startDate={item.startDate}
+        endDate={item.endDate}
+        description={item.description}
+        imageURL={item.imageUrl}
+        */
+      />
+    );
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Nav />
+      <main>
+        <section className="travel--blog--section">{travel}</section>
+      </main>
     </div>
   );
 }
-
-export default App;
